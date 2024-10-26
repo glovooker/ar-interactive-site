@@ -37,13 +37,17 @@
         const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
         scene.add(light);
 
-        // Create a simple object (cube)
+        // Load texture and apply to the cube
+        const textureLoader = new THREE.TextureLoader();
+        const texture = textureLoader.load('https://res.cloudinary.com/glovooker/image/upload/v1702812111/portfolio/clients/cenfotec.png');  // Replace with the URL to your image
+
+        // Create the cube with the loaded texture
         const geometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const material = new THREE.MeshBasicMaterial({ map: texture });
         const cube = new THREE.Mesh(geometry, material);
         
-        // Set initial position of the cube (move it 2 meters in front of the camera)
-        cube.position.set(0, 0, -2); // Move the cube 2 units in the negative z direction
+        // Set initial position of the cube (closer to the camera)
+        cube.position.set(0, 0, -1.5);
         scene.add(cube);
 
         // Animation loop
