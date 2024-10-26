@@ -37,15 +37,30 @@
         const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
         scene.add(light);
 
-        // Load texture and apply to the cube
+        // Load texture and set properties
         const textureLoader = new THREE.TextureLoader();
-        const texture = textureLoader.load('https://res.cloudinary.com/glovooker/image/upload/v1702812111/portfolio/clients/cenfotec.png');  // Replace with the URL to your image
+        const texture = textureLoader.load('https://res.cloudinary.com/glovooker/image/upload/v1702812111/portfolio/clients/cenfotec.png', (texture) => {
+            // Calculate aspect ratio
+            const aspectRatio = texture.image.width / texture.image.height;
+            
+            // Maintain aspect ratio by adjusting repeat
+            if (aspectRatio > 1) {
+                texture.repeat.set(1, 1 / aspectRatio);
+            } else {
+                texture.repeat.set(aspectRatio, 1);
+            }
+            
+            // Prevent stretching
+            texture.center.set(0.5, 0.5);
+            texture.wrapS = THREE.RepeatWrapping;
+            texture.wrapT = THREE.RepeatWrapping;
+        });
 
-        // Create the cube with the loaded texture
+        // Create cube with adjusted texture
         const geometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
         const material = new THREE.MeshBasicMaterial({ map: texture });
         const cube = new THREE.Mesh(geometry, material);
-        
+
         // Set initial position of the cube (closer to the camera)
         cube.position.set(0, 0, -1.5);
         scene.add(cube);
