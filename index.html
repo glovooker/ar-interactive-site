@@ -41,6 +41,9 @@
         const geometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
         const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
         const cube = new THREE.Mesh(geometry, material);
+        
+        // Set initial position of the cube (move it 2 meters in front of the camera)
+        cube.position.set(0, 0, -2); // Move the cube 2 units in the negative z direction
         scene.add(cube);
 
         // Animation loop
