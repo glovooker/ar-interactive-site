@@ -39,7 +39,7 @@
 
         // Load texture and set properties
         const textureLoader = new THREE.TextureLoader();
-        const texture = textureLoader.load('https://res.cloudinary.com/glovooker/image/upload/v1702812111/portfolio/clients/cenfotec.png', (texture) => {
+        const texture = textureLoader.load('https://res.cloudinary.com/glovooker/image/upload/v1729916545/students-site/cenfotec-cube.png', (texture) => {
             // Calculate aspect ratio
             const aspectRatio = texture.image.width / texture.image.height;
             
@@ -62,7 +62,7 @@
         const cube = new THREE.Mesh(geometry, material);
 
         // Set initial position of the cube (closer to the camera)
-        cube.position.set(0, 0, -1.5);
+        cube.position.set(0, 0, -0.5);
         scene.add(cube);
 
         // Animation loop
